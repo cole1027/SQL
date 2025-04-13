@@ -1,4 +1,4 @@
--- created table--
+--THIS CODE IS REPRESENTING THE DATABASE --
 CREATE TABLE ecom_data (
     user_id VARCHAR(50),
     session_duration INT,
@@ -22,7 +22,7 @@ VALUES
     ('QrSFgH561764', 1, 1, 50.00, 'Bluetooth Speaker'),
     ('cDeFgH567890', 4, 1, 150.75, 'Smartwatch');
     
--- The following queries pull information from this database--
+-- THE FOLLOWING QUERIES WILL PULL INFORMATION FROM THE DATABASE--
 
 1. -- Write a SQL query that orders the items by price.--
 
