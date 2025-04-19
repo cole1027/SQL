@@ -1,0 +1,84 @@
+#1. Show Customers (their full names, customer ID, and country) who are not in the US.
+
+select FirstName
+, lastname 
+, customerid
+,country
+from customers
+where country not like '%USA%'
+;
+
+
+#2. Show only the Customers from Brazil.
+ select FirstName
+, lastname 
+, customerid
+,country
+from customers
+where country  like '%Brazil%'
+;
+
+#3. Find the Invoices of customers who are from Brazil. The resulting table should show the customer's full name, Invoice ID, Date of the invoice, and billing country.
+select 
+customers.firstname
+, customers.lastname
+, invoices.InvoiceId
+, invoices.invoicedate
+,invoices.BillingCountry
+from customers
+left join invoices
+on customers.CustomerId = invoices.CustomerId
+where country  like '%Brazil%'
+;
+#4. Show the Employees who are Sales Agents.
+select *
+from employees
+where title like '%Sales%'
+and title like '%Agent%'
+;
+#5. Find a unique/distinct list of billing countries from the Invoice table.
+select distinct billingcountry
+from invoices
+;
+
+#6. Provide a query that shows the invoices associated with each sales agent. The resulting table should include the Sales Agent's full name.
+select 
+invoices.InvoiceId
+,employees.FirstName
+,employees.LastName
+, employees.Title
+from invoices
+left join customers
+on invoices.InvoiceId=customers.customerid
+left join employees
+on customers.supportrepid=employees.EmployeeId
+where title = 'Sales Support Agent'
+;
+#7. Show the Invoice Total, Customer name, Country, and Sales Agent name for all invoices and customers.
+select 
+invoices.total
+,customers.FirstName
+, customers.LastName
+,customers.Country
+,employees.FirstName as Employee_Firstname
+,employees.LastName as Employee_lastname
+, employees.Title
+from invoices
+inner join customers
+on invoices.customerID=customers.customerid
+inner join employees
+on customers.supportrepid=employees.EmployeeId
+where title = 'Sales Support Agent'
+;
+#8. How many Invoices were there in 2009?
+select 
+count(invoiceid)
+from invoices
+where invoicedate like '%2009%'
+;
+#9. What are the total sales for 2009?
+select sum(total)
+from invoices
+where invoicedate like '%2009%'
+;
+#10. Write a query that includes the purchased track name with each invoice line ID.
